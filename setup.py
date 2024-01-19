@@ -8,7 +8,7 @@ with open("requirements.txt", "r") as fh:
 setup(
    name='graph-generators',
    python_requires='>= 3.5',
-   version='0.1.6',
+   version='0.1.7',
    author='Chai Wah Wu',
    author_email='cwwuieee@gmail.com',
    packages=find_packages(),

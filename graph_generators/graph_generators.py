@@ -8,7 +8,7 @@ generators for graph classes in networkx.
 
 """
 
-from itertools import combinations, product, zip_longest
+from itertools import combinations, product, zip_longest, groupby, islice
 import networkx as nx
 
 
@@ -534,4 +534,39 @@ def johnson_graph(n, k, create_using=None):
     G.add_edges_from(
         (a, b) for a, b in combinations(G, 2) if len(set(a) & set(b)) == k - 1
     )
+    return G
+
+
+def pell_graph(n, create_using=None):
+    """Return the n-dimensional Pell graph
+
+    Parameters
+    ----------
+    n : int
+
+    Notes
+    -----
+    https://mathworld.wolfram.com/PellGraph.html
+    """
+    G = nx.empty_graph(
+        (
+            v
+            for v in product((0, 1, 2), repeat=n)
+            if not any(len(list(g)) & 1 and k == 2 for k, g in groupby(v))
+        ),
+        create_using,
+    )
+    for a, b in combinations(G, 2):
+        r = tuple(islice((i for i in range(n) if a[i] != b[i]), 3))
+        if len(r) == 1 and a[r[0]] != 2 and b[r[0]] != 2:
+            G.add_edge(a, b)
+        elif (
+            len(r) == 2
+            and r[0] + 1 == r[1]
+            and a[r[0]]
+            and b[r[0]]
+            and a[r[0]] == a[r[1]]
+            and b[r[0]] == b[r[1]]
+        ):
+            G.add_edge(a, b)
     return G

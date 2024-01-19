@@ -38,3 +38,4 @@ For instance, `keller_graph(n)` returns an _n_-dimensional Keller graph.
 | [Halved cube graph](https://mathworld.wolfram.com/HalvedCubeGraph.html) | `halved_cube_graph` |
 | [Folded cube graph](https://mathworld.wolfram.com/FoldedCubeGraph.html) | `folded_cube_graph` |
 | [Johnson graph](https://mathworld.wolfram.com/JohnsonGraph.html) | `johnson_graph` |
+| [Pell graph](https://mathworld.wolfram.com/PellGraph.html) | `pell_graph` |
